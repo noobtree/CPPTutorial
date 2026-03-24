@@ -2,6 +2,16 @@
 #include <string>
 #include <vector>
 
+namespace Level2 {
+    /// <summary>
+    /// https://school.programmers.co.kr/learn/courses/30/lessons/389480
+    /// </summary>
+    class PerfectCrime {
+    public:
+        int solution(std::vector<std::vector<int>> info, int n, int m);
+    };
+}
+
 namespace Level3 {
     /// <summary>
     /// https://school.programmers.co.kr/learn/courses/30/lessons/451808

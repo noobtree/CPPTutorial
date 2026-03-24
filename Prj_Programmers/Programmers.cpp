@@ -1,6 +1,52 @@
 #include "Programmers.h"
 #include <algorithm>
 
+int Level2::PerfectCrime::solution(std::vector<std::vector<int>> info, int n, int m) {
+    // list that contain the minimum value of evidenceA for all cases which can be evidenceB
+    std::vector<int> evidences = std::vector<int>(m, n);
+    // initialize entry point
+    evidences[0] = 0;
+
+    // for every informations
+    for (std::vector<int> trace : info) {
+        // buffer to contain number of cases on current trace
+        std::vector<int>buffer(m, n);
+
+        for (int i = 0; i < m; ++i) {
+            // when evidenceA was over, don't try
+            if (evidences[i] >= n) {
+                continue;
+            }
+
+            // when A steal
+            int caseA = evidences[i] + trace[0];
+            if (caseA < n) {
+                // select minimum value, caseA or current evidenceA
+                buffer[i] = caseA < buffer[i] ? caseA : buffer[i];
+            }
+
+            // when B steal
+            int caseB = i + trace[1];
+            if (caseB < m) {
+                // select minimum value of evidenceA, when previous evidenceB or current evidenceB
+                buffer[caseB] = evidences[i] < buffer[caseB] ? evidences[i] : buffer[i];
+            }
+        }
+
+        // overwrite to current number of cases
+        std::copy(buffer.begin(), buffer.end(), evidences.begin());
+    }
+
+    // find minimum value
+    int answer = n;
+    for (const int& evidenceA : evidences) {
+        if (evidenceA < answer) {
+            answer = evidenceA;
+        }
+    }
+    return answer < n ? answer : -1;
+}
+
 int Level3::BullsAndCows::solution(int n) const
 {
     // prepare all candidates
