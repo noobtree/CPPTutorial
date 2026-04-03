@@ -17,6 +17,63 @@ void Baekjoon::MaximumValue() {
 	return;
 }
 
+void Baekjoon::BalancedWorld()
+{
+	std::vector<std::string> sentences;
+	while (true)
+	{
+		std::string token;
+		std::getline(std::cin, token, '\n');
+
+		if (token == ".")
+		{
+			break;
+		}
+
+		sentences.push_back(token);
+	}
+
+	for (const std::string& sentence : sentences)
+	{
+		bool isBalanced = true;
+		std::stack<char> parenthesis;
+
+		for (int i = 0; i < sentence.size(); ++i)
+		{
+			if (sentence[i] == '(' || sentence[i] == '[')
+			{
+				parenthesis.push(sentence[i]);
+			}
+			if (sentence[i] == ')')
+			{
+				if ((parenthesis.empty() == false) && (parenthesis.top() == '('))
+				{
+					parenthesis.pop();
+				}
+				else
+				{
+					isBalanced = false;
+					break;
+				}
+			}
+			if (sentence[i] == ']')
+			{
+				if ((parenthesis.empty() == false) && (parenthesis.top() == '['))
+				{
+					parenthesis.pop();
+				}
+				else
+				{
+					isBalanced = false;
+					break;
+				}
+			}
+		}
+
+		std::cout << (isBalanced == true ? "yes" : "no") << std::endl;
+	}
+}
+
 void Baekjoon::FindWhoDidNotDoHomework() {
 	bool arrCheck[30] = { false };
 
@@ -32,6 +89,50 @@ void Baekjoon::FindWhoDidNotDoHomework() {
 		}
 	}
 	return;
+}
+
+void Baekjoon::ParenthesisStringProblem()
+{
+	int t = 0;
+	std::cin >> t;
+
+	bool* arrResult = new bool[t];
+	for (int i = 0; i < t; ++i)
+	{
+		std::string parenthesisString;
+		std::cin >> parenthesisString;
+
+		std::stack<char> parenthesis = std::stack<char>();
+
+		for (int j = 0; j < parenthesisString.size(); ++j)
+		{
+			if (parenthesisString[j] == '(')
+			{
+				parenthesis.push('(');
+			}
+			if (parenthesisString[j] == ')')
+			{
+				if (parenthesis.empty() == true)
+				{
+					parenthesis.push(')');
+					break;
+				}
+				else
+				{
+					parenthesis.pop();
+				}
+			}
+		}
+
+		arrResult[i] = parenthesis.empty();
+	}
+
+	for (int i = 0; i < t; ++i)
+	{
+		std::cout << (arrResult[i] == true ? "YES" : "NO") << std::endl;
+	}
+
+	delete[] arrResult;
 }
 
 void Baekjoon::CountingSpecificInteger() {
@@ -78,4 +179,150 @@ void Baekjoon::FindMinMaxValue() {
 	}
 
 	std::cout << min << " " << max << std::endl;
+}
+
+void Baekjoon::StackAction()
+{
+	int commandCount;
+	std::cin >> commandCount;
+	std::cin.ignore();
+
+	std::string* arrCommand = new std::string[commandCount];
+
+	for (int i = 0; i < commandCount; ++i)
+	{
+		std::string line;
+		std::getline(std::cin, line, '\n');
+		
+		arrCommand[i] = line;
+	}
+
+	std::stack<int> buffer;
+
+	for (int i = 0; i < commandCount; ++i)
+	{
+		std::stringstream ss(arrCommand[i]);
+		std::string token;
+		std::getline(ss, token, ' ');
+
+		if (token == "push")
+		{
+			std::getline(ss, token, '\n');
+			int pushValue = std::stoi(token);
+
+			buffer.push(pushValue);
+			continue;
+		}
+		if (token == "pop")
+		{
+			int popValue = -1;
+			if (buffer.size() > 0)
+			{
+				popValue = buffer.top();
+				buffer.pop();
+			}
+			std::cout << popValue << std::endl;
+			continue;
+		}
+		if (token == "size")
+		{
+			std::cout << buffer.size() << std::endl;
+			continue;
+		}
+		if (token == "empty")
+		{
+			std::cout << (buffer.empty() == true ? 1 : 0) << std::endl;
+			continue;
+		}
+		if (token == "top")
+		{
+			int popValue = -1;
+			if (buffer.size() > 0)
+			{
+				popValue = buffer.top();
+			}
+			std::cout << popValue << std::endl;
+			continue;
+		}
+	}
+
+	delete[] arrCommand;
+}
+
+void Baekjoon::QueueAction()
+{
+	int commandCount;
+	std::cin >> commandCount;
+	std::cin.ignore();
+
+	std::string* arrCommand = new std::string[commandCount];
+
+	for (int i = 0; i < commandCount; ++i)
+	{
+		std::string line;
+		std::getline(std::cin, line, '\n');
+
+		arrCommand[i] = line;
+	}
+
+	std::queue<int> buffer;
+
+	for (int i = 0; i < commandCount; ++i)
+	{
+		std::stringstream ss(arrCommand[i]);
+		std::string token;
+		std::getline(ss, token, ' ');
+
+		if (token == "push")
+		{
+			std::getline(ss, token, '\n');
+			int pushValue = std::stoi(token);
+
+			buffer.push(pushValue);
+			continue;
+		}
+		if (token == "pop")
+		{
+			int popValue = -1;
+			if (buffer.size() > 0)
+			{
+				popValue = buffer.front();
+				buffer.pop();
+			}
+			std::cout << popValue << std::endl;
+			continue;
+		}
+		if (token == "size")
+		{
+			std::cout << buffer.size() << std::endl;
+			continue;
+		}
+		if (token == "empty")
+		{
+			std::cout << (buffer.empty() == true ? 1 : 0) << std::endl;
+			continue;
+		}
+		if (token == "front")
+		{
+			int popValue = -1;
+			if (buffer.size() > 0)
+			{
+				popValue = buffer.front();
+			}
+			std::cout << popValue << std::endl;
+			continue;
+		}
+		if (token == "back")
+		{
+			int recentValue = -1;
+			if (buffer.size() > 0)
+			{
+				recentValue = buffer.back();
+			}
+			std::cout << recentValue << std::endl;
+			continue;
+		}
+	}
+
+	delete[] arrCommand;
 }
