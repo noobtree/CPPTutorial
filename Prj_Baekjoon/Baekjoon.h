@@ -8,42 +8,89 @@
 
 namespace Baekjoon {
 	/// <summary>
+	/// https://www.acmicpc.net/problem/1010
+	/// </summary>
+	class BridgeConstruction
+	{
+	public:
+		int main();
+	private:
+		/// <summary>
+		/// <paramref name="n"/>개의 숫자중에서 <paramref name="r"/>개의 수를 선택하는 조합의 개수
+		/// </summary>
+		/// <returns>조합의 개수</returns>
+		uint32_t GetCombinationCount(uint32_t n, uint32_t r);
+	};
+
+	/// <summary>
 	/// https://www.acmicpc.net/problem/2562
 	/// </summary>
-	void MaximumValue();
+	class MaximumValue
+	{
+	public:
+		int main();
+	};
 
 	/// <summary>
 	/// https://www.acmicpc.net/problem/4949
 	/// </summary>
-	void BalancedWorld();
+	class BalancedWorld
+	{
+	public:
+		int main();
+	};
 
 	/// <summary>
 	/// https://www.acmicpc.net/problem/5597
 	/// </summary>
-	void FindWhoDidNotDoHomework();
+	class FindWhoDidNotDoHomework
+	{
+	public:
+		int main();
+	};
 
 	/// <summary>
 	/// https://www.acmicpc.net/problem/9012
 	/// </summary>
-	void ParenthesisStringProblem();
+	class ParenthesisStringProblem
+	{
+	public:
+		int main();
+	};
 
 	/// <summary>
 	/// https://www.acmicpc.net/problem/10807
 	/// </summary>
-	void CountingSpecificInteger();
+	class CountingSpecificInteger
+	{
+	public:
+		int main();
+	};
 
 	/// <summary>
 	/// https://www.acmicpc.net/problem/10818
 	/// </summary>
-	void FindMinMaxValue();
+	class FindMinMaxValue
+	{
+	public:
+		int main();
+	};
 
 	/// <summary>
 	/// https://www.acmicpc.net/problem/10828
 	/// </summary>
-	void StackAction();
+	class StackAction
+	{
+	public:
+		int main();
+	};
 
 	/// <summary>
 	/// https://www.acmicpc.net/problem/10845
 	/// </summary>
-	void QueueAction();
+	class QueueAction
+	{
+	public:
+		int main();
+	};
 }
